@@ -1,0 +1,138 @@
+/* ============================================================
+   Tutorial Interattivo Spotlight — fanta-lab
+   Zero-dependency walkthrough overlay styles.
+   ============================================================ */
+
+.tour-overlay-rect {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 10000;
+    pointer-events: auto;
+    transition: none;
+}
+
+.tour-overlay-highlight {
+    position: fixed;
+    background: transparent;
+    border-radius: 8px;
+    box-shadow: 0 0 0 3px var(--gold, #f5b642), 0 0 24px 4px rgba(245, 182, 66, 0.45);
+    z-index: 10001;
+    pointer-events: none;
+}
+
+.tour-tooltip {
+    position: fixed;
+    z-index: 10002;
+    background: var(--surface, rgba(12, 15, 25, 0.95));
+    border: 1px solid var(--border, rgba(255, 45, 117, 0.18));
+    border-radius: 12px;
+    padding: 16px 18px;
+    max-width: 320px;
+    min-width: 240px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+    color: #f1f5f9;
+}
+
+.tour-tooltip-arrow {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+}
+
+.tour-tooltip-arrow-top {
+    /* tooltip is below the target: arrow points up, sits at top edge */
+    top: -9px;
+    border-bottom: 9px solid var(--surface, rgba(12, 15, 25, 0.95));
+}
+
+.tour-tooltip-arrow-bottom {
+    /* tooltip is above the target: arrow points down, sits at bottom edge */
+    bottom: -9px;
+    border-top: 9px solid var(--surface, rgba(12, 15, 25, 0.95));
+}
+
+.tour-tooltip-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: #fff;
+}
+
+.tour-tooltip-text {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--text-muted, #94a3b8);
+    margin: 0 0 14px 0;
+}
+
+.tour-tooltip-progress {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted, #94a3b8);
+    margin-bottom: 10px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.tour-tooltip-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.tour-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity 0.15s ease;
+}
+
+.tour-btn:hover {
+    opacity: 0.85;
+}
+
+.tour-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+.tour-btn-primary {
+    background: var(--primary, #ff2d75);
+    color: #fff;
+}
+
+.tour-btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #f1f5f9;
+}
+
+.tour-btn-skip {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 6px;
+}
+
+.tour-btn-skip:hover {
+    color: #f1f5f9;
+}
+
+#guideNavBtn {
+    /* Matches existing .profile-btn sibling styling context; no override needed beyond icon spacing */
+}
