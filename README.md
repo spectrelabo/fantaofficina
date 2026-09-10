@@ -1,4 +1,6 @@
-# Spectre - FantaMoneyball — Quantitative Fantasy Football & League Analytics Framework
+# Spectre - FantaMoneyball — Framework Quantitativo di Analisi per Fantacalcio & Lega
+
+🇬🇧 [Read in English](README.en.md)
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![License: PolyForm Noncommercial 1.0.0](https://img.shields.io/badge/License-PolyForm--Noncommercial--1.0.0-blue.svg)](LICENSE)
@@ -6,144 +8,147 @@
 [![ML: Quantile Regression (demo)](https://img.shields.io/badge/ML-Quantile%20Regression%20(demo)-yellow.svg)](docs/MODEL_INTERPRETABILITY.md)
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-yellow.svg?logo=buy-me-a-coffee)](https://buymeacoffee.com/blueskies360)
 
-A modular, data-driven pipeline for data extraction, probabilistic points projection,
-sabermetric valuation (VORP), and mathematical roster optimization for fantasy football
-auctions (Fantacalcio Serie A).
+Una pipeline modulare e data-driven per l'estrazione dati, la proiezione probabilistica dei
+punteggi, la valutazione sabermetrica (VORP) e l'ottimizzazione matematica della rosa per
+le aste del Fantacalcio Serie A.
 
-📖 **Model Interpretability & Math Guide**: [docs/MODEL_INTERPRETABILITY.md](docs/MODEL_INTERPRETABILITY.md)
-📐 **Composite Scoring Methodology**: [docs/scoring_methodology.md](docs/scoring_methodology.md)
-🗺️ **Pipeline Architecture**: [docs/pipeline_architecture.md](docs/pipeline_architecture.md)
+📖 **Guida all'interpretabilità del modello**: [docs/MODEL_INTERPRETABILITY.md](docs/MODEL_INTERPRETABILITY.md)
+📐 **Metodologia del Composite Score**: [docs/scoring_methodology.md](docs/scoring_methodology.md)
+🗺️ **Architettura della pipeline**: [docs/pipeline_architecture.md](docs/pipeline_architecture.md)
 
-## Demo positioning
+## Posizionamento: versione demo
 
-**This is a public demonstration build, not the production system.** The ingestion layer
-(`01_scrape_historical.py`, `04_scrape_understat.py`, `04b_scrape_lineups.py`,
-`05_scrape_injuries.py`) genuinely scrapes fantacalcio.it, football-data.co.uk, Understat and
-Transfermarkt — it hits real endpoints and produces real historical and injury datasets.
-The points projection and pricing formulas shown below (`08_quantile_points_model.py`,
-`09_vorp_auction_pricing.py`) are demonstrative, calibrated to teach the methodology, not to
-win your league. The production version — real quantile regression models trained on 11+
-seasons, refined VORP pricing, a post-draft audit engine, a trade analyzer, a lineup
-optimizer, and an AI draft copilot — is a private commercial product and is **not**
-distributed in this repository. No live demo link is provided on purpose: clone it, run it
-locally, and judge the methodology on its own terms.
-
----
-
-## The Problem: Why Intuition Systematically Fails at Auctions
-
-Every pre-season, millions of fantasy managers sit around the draft table convinced that
-their "gut feeling" will secure the championship. The empirical results are embarrassingly
-predictable:
-- Forty percent of the total budget is obliterated on a striker whose primary qualification
-  was scoring a hat-trick against an alpine village team in a July friendly.
-- A defender is bought at a premium price, only for the manager to realize by October that
-  the player spends six months a year in clinical rehabilitation for chronic muscular lesions.
-- An impulsive bidding war is fought over an "attacking midfielder" whose Expected Goals per
-  90 minutes is lower than that of the opposing goalkeeper.
-
-`Spectre - FantaMoneyball` was built to replace emotional hallucinations with cold,
-reproducible, data-driven analytics. The framework does not care about names, transfer
-market hype, or media narratives. Its singular purpose is to quantify the **risk-adjusted
-expected value** of every active player and solve the **optimal roster knapsack problem**.
+**Questa è una build dimostrativa pubblica, non il sistema di produzione.** Il livello di
+ingestion (`01_scrape_historical.py`, `04_scrape_understat.py`, `04b_scrape_lineups.py`,
+`05_scrape_injuries.py`) fa scraping reale su fantacalcio.it, football-data.co.uk, Understat
+e Transfermarkt — colpisce endpoint veri e produce dataset storici e infortuni reali. Le
+formule di proiezione punti e pricing mostrate di seguito (`08_quantile_points_model.py`,
+`09_vorp_auction_pricing.py`) sono dimostrative, calibrate per insegnare la metodologia, non
+per vincere la tua lega. La versione di produzione — modelli reali di quantile regression
+allenati su 11+ stagioni, pricing VORP raffinato, un audit engine post-asta, un trade
+analyzer, un lineup optimizer e un copilot AI per il draft — è un prodotto commerciale
+privato e **non** è distribuita in questo repository. Nessun link a demo live, di proposito:
+clonalo, eseguilo in locale, e giudica la metodologia con le tue mani.
 
 ---
 
-## Core Purpose: Analytical Modules & Objectives
+## Il Problema: Perché l'Istinto Fallisce Sistematicamente all'Asta
 
-1. **Probabilistic Projection Engine**: Replacing static point predictions with full
-   probability intervals (P10 Floor, P50 Expected, P90 Ceiling) to identify boom-or-bust
-   assets vs high-floor stalwarts.
-2. **Sabermetric Value Over Replacement (VORP)**: Translating projected fantasy points into
-   mathematical, budget-constrained fair market credit bids.
-3. **Mathematical 25-Player Roster Optimization**: Solving the multi-dimensional Integer
-   Knapsack Problem (MILP) to construct the highest-expected-points squad for any given
-   budget constraint.
-4. **Anti-Hype Shield (Risk-Adjusted Pricing)**: Systematically penalizing chronically
-   injured assets based on 3-year medical audit logs.
+Ad ogni pre-stagione, milioni di fantallenatori si siedono al tavolo dell'asta convinti che
+il proprio "istinto" li porterà allo scudetto. I risultati empirici sono imbarazzantemente
+prevedibili:
+- Il quaranta percento del budget totale viene bruciato su un attaccante la cui principale
+  qualifica era una tripletta segnata contro una squadretta di paese in un'amichevole di
+  luglio.
+- Un difensore viene comprato a prezzo pieno, salvo poi scoprire ad ottobre che il giocatore
+  passa sei mesi l'anno in riabilitazione clinica per lesioni muscolari croniche.
+- Scoppia una guerra di rilanci impulsiva su un "centrocampista offensivo" i cui Expected
+  Goals ogni 90 minuti sono inferiori a quelli del portiere avversario.
+
+`Spectre - FantaMoneyball` nasce per sostituire le allucinazioni emotive con un'analisi
+fredda, riproducibile e basata sui dati. Il framework non si cura dei nomi, dell'hype di
+mercato o delle narrazioni mediatiche. Il suo unico scopo è quantificare il **valore atteso
+corretto per il rischio** di ogni giocatore attivo e risolvere il **problema di ottimizzazione
+della rosa (knapsack)**.
 
 ---
 
-## Interactive Demo & Case Studies (Zero-Config Test, real output)
+## Scopo Centrale: Moduli Analitici e Obiettivi
 
-You do not need to scrape any data to see the framework in action. Run the standalone
-interactive demo in one command:
+1. **Motore di Proiezione Probabilistica**: sostituisce le proiezioni puntuali statiche con
+   intervalli di probabilità completi (P10 Pessimistico, P50 Atteso, P90 Ottimistico) per
+   identificare asset boom-or-bust rispetto a titolari ad alto floor.
+2. **Value Over Replacement (VORP) in stile sabermetrico**: traduce i punti fantacalcio
+   proiettati in offerte in crediti eque e vincolate al budget.
+3. **Ottimizzazione Matematica della Rosa a 25 Giocatori**: risolve il problema di
+   programmazione lineare intera (MILP) per costruire la rosa a punti attesi massimi dato
+   un budget.
+4. **Scudo Anti-Hype (Pricing Corretto per il Rischio)**: penalizza sistematicamente gli
+   asset cronicamente infortunati sulla base dello storico medico triennale.
+
+---
+
+## Demo Interattiva e Case Study (Zero-Config, output reale)
+
+Non serve scaricare alcun dato per vedere il framework in azione. Esegui la demo interattiva
+standalone con un solo comando:
 
 ```bash
 python demo.py
 ```
 
-This is verbatim output from the bundled sample dataset (`examples/dataset_sample.csv`) —
-reproducible by anyone who clones the repo, no cherry-picking:
+Questo è l'output testuale reale ottenuto sul dataset di esempio incluso
+(`examples/dataset_sample.csv`) — riproducibile da chiunque cloni il repository, nessun
+numero scelto ad arte:
 
-### Demo 1 — Hype Trap vs Statistical Gem (Market Inefficiency Detection)
+### Demo 1 — Trappola Mediatica vs Gioiello Statistico (Inefficienza di Mercato)
 
-| Attribute | Undervalued Gem — Calhanoglu (C, INT) | Overhyped Trap — Yildiz (A, JUV) |
+| Attributo | Gioiello Sottovalutato — Calhanoglu (C, INT) | Trappola Sopravvalutata — Yildiz (A, JUV) |
 |---|---|---|
-| Official List Price | 28 credits | 22 credits |
-| Rational Fair Price (VORP) | 243 credits (VORP: 40.6 pts) | 80 credits (VORP: 61.4 pts) |
-| Market Surplus Value | +152 credits (High ROI Bargain) | -201 credits (Capital Burner) |
-| Expected Season Pts (P50) | 207.1 pts (Floor: 128.0 / Ceiling: 253.8) | 193.8 pts (Floor: 101.1 / Ceiling: 258.3) |
-| 3y Injury Days Lost | 216 days (Malus: 0.700) | 37 days (Malus: 0.144) |
-| Draft Table Action | Primary Target | Avoid / Force Competitors to Overbid |
+| Prezzo di listino ufficiale | 28 crediti | 22 crediti |
+| Prezzo equo razionale (VORP) | 243 crediti (VORP: 40.6 pt) | 80 crediti (VORP: 61.4 pt) |
+| Valore di mercato residuo | +152 crediti (grande affare) | -201 crediti (brucia-budget) |
+| Punti stagionali attesi (P50) | 207.1 pt (Floor: 128.0 / Ceiling: 253.8) | 193.8 pt (Floor: 101.1 / Ceiling: 258.3) |
+| Giorni di infortunio (3y) | 216 giorni (Malus: 0.700) | 37 giorni (Malus: 0.144) |
+| Azione consigliata all'asta | Obiettivo primario | Da evitare / far rilanciare gli avversari |
 
-### Demo 2 — Quantile Uncertainty (Boom-or-Bust vs Rock-Solid Floor)
+### Demo 2 — Incertezza Quantile (Boom-or-Bust vs Floor Solido)
 
-Static averages hide volatility. Two players can project similarly on average yet carry
-opposite risk profiles:
+Le medie statiche nascondono la volatilità. Due giocatori possono proiettare punteggi simili
+in media, pur avendo profili di rischio opposti:
 
-- **Boom-or-Bust Profile — Dovbyk (A, BOL)**: Floor (P10) 48.0 pts / Expected (P50) 150.4 pts
-  / Ceiling (P90) 240.5 pts — spread of 192.5 pts, high-upside match-winner target.
-- **Rock-Solid Floor Profile — Dimarco (D, INT)**: Floor (P10) 163.6 pts / Expected (P50)
-  226.4 pts / Ceiling (P90) 253.9 pts — spread of 90.3 pts, safe weekly starter.
+- **Profilo Boom-or-Bust — Dovbyk (A, BOL)**: Floor (P10) 48.0 pt / Atteso (P50) 150.4 pt /
+  Ceiling (P90) 240.5 pt — spread di 192.5 pt, obiettivo ad alto potenziale.
+- **Profilo Floor Solido — Dimarco (D, INT)**: Floor (P10) 163.6 pt / Atteso (P50) 226.4 pt /
+  Ceiling (P90) 253.9 pt — spread di 90.3 pt, titolare sicuro ogni settimana.
 
-### Demo 3 — Instant MILP 25-Player Roster Knapsack Solver
+### Demo 3 — Solver MILP Istantaneo per Rosa da 25 Giocatori
 
 ```
-[SOLVER RESULT] Optimal Squad Found in <0.05 seconds:
-  Budget = 500 Credits | 3 Goalkeepers | 8 Defenders | 8 Midfielders | 6 Forwards
-  Total Spend: 415 / 500 credits (Bank: 85 cr)
-  Projected Season Points: 5019.9 pts (Floor: 2665.5 | Ceiling: 6053.3)
+[SOLVER RESULT] Rosa ottimale trovata in <0.05 secondi:
+  Budget = 500 Crediti | 3 Portieri | 8 Difensori | 8 Centrocampisti | 6 Attaccanti
+  Spesa totale: 415 / 500 crediti (Rimanenza: 85 cr)
+  Punti stagionali proiettati: 5019.9 pt (Floor: 2665.5 | Ceiling: 6053.3)
 
-  Key Core Assets Selected by MILP Solver:
-  [Goalkeeper    ] Mascardi           (TOR) Cost: 1cr | Exp:178.6 pts | VORP: 33.4
-  [Top Defender  ] Dimarco            (INT) Cost:31cr | Exp:226.4 pts | VORP: 64.5
-  [Top Midfielder] Paz N.             (COM) Cost:29cr | Exp:218.3 pts | VORP: 51.8
-  [Top Forward   ] Malen              (ROM) Cost:38cr | Exp:217.6 pts | VORP: 85.2
+  Asset chiave selezionati dal solver MILP:
+  [Portiere       ] Mascardi           (TOR) Costo: 1cr | Att:178.6 pt | VORP: 33.4
+  [Top Difensore  ] Dimarco            (INT) Costo:31cr | Att:226.4 pt | VORP: 64.5
+  [Top Centrocamp.] Paz N.             (COM) Costo:29cr | Att:218.3 pt | VORP: 51.8
+  [Top Attaccante ] Malen              (ROM) Costo:38cr | Att:217.6 pt | VORP: 85.2
 ```
 
 ---
 
-## Data Processing & ML Pipeline Architecture
+## Architettura della Pipeline di Elaborazione Dati & ML
 
 ```mermaid
 flowchart TD
-    subgraph Ingestion [1. Heterogeneous Data Ingestion — real scraping]
-        FC_Hist["Historical League Stats (11 Seasons)<br/>Ratings, Fantavotes, Goals, Assists, Cards"]
-        FC_Quot["Official Pre-Season Player Sheet<br/>Base Quotations, FVM, Positional Roles"]
-        US["Understat (Recent Seasons)<br/>xG, xA, npxG, Shots, Key Passes"]
-        TM["Transfermarkt Medical Audit (3 Seasons)<br/>Injury History, Days Lost, Recurrence"]
-        FD["Match Results & Team Strength<br/>Offensive and Defensive Power Indices"]
+    subgraph Ingestion [1. Ingestion Dati Eterogenei — scraping reale]
+        FC_Hist["Storico di Lega (11 Stagioni)<br/>Voti, Fantavoti, Gol, Assist, Cartellini"]
+        FC_Quot["Listone Ufficiale Pre-Stagione<br/>Quotazioni Base, FVM, Ruoli"]
+        US["Understat (Stagioni Recenti)<br/>xG, xA, npxG, Tiri, Key Passes"]
+        TM["Audit Medico Transfermarkt (3 Stagioni)<br/>Storico Infortuni, Giorni Persi, Recidive"]
+        FD["Risultati Partite & Forza Squadre<br/>Indici di Potenza Offensiva e Difensiva"]
     end
 
     subgraph FeatureEng [2. Feature Engineering & Entity Matching]
-        P1["01_scrape_historical.py<br/>3y weighted ratings, volatility (std), trends"]
-        P2["03_update_listone.py<br/>Active roster parsing & role mapping"]
-        P3["04_scrape_understat.py<br/>Advanced offensive metrics aggregation"]
-        P4["05_scrape_injuries.py<br/>Multithreaded scraping & fragility index"]
+        P1["01_scrape_historical.py<br/>Media pesata 3y, volatilità (std), trend"]
+        P2["03_update_listone.py<br/>Parsing rosa attiva & mappatura ruoli"]
+        P3["04_scrape_understat.py<br/>Aggregazione metriche offensive avanzate"]
+        P4["05_scrape_injuries.py<br/>Scraping multithread & indice fragilità"]
         P5["06_build_dataset.py<br/>Fuzzy entity matching + Composite Score"]
     end
 
-    subgraph ModelingDemo [3. Projection & Pricing — demo heuristics]
-        P8["08_quantile_points_model.py<br/>Demo Points Projection (P10 / P50 / P90)"]
-        P9["09_vorp_auction_pricing.py<br/>Demo VORP & Fair Credit Pricing"]
-        P10["10_roster_optimizer.py<br/>MILP Roster Knapsack"]
+    subgraph ModelingDemo [3. Proiezione & Pricing — euristiche demo]
+        P8["08_quantile_points_model.py<br/>Proiezione punti demo (P10 / P50 / P90)"]
+        P9["09_vorp_auction_pricing.py<br/>VORP demo & Fair Credit Pricing"]
+        P10["10_roster_optimizer.py<br/>Rosa Knapsack via MILP"]
     end
 
-    subgraph Artifacts [4. Decision Artifacts]
+    subgraph Artifacts [4. Output Decisionali]
         CSV[("dataset_finale.csv")]
-        XLSX[("Formatted multi-tab Excel workbook")]
-        ROSTER["Optimal 25-Player Squad Blueprint"]
+        XLSX[("Workbook Excel multi-scheda formattato")]
+        ROSTER["Blueprint Rosa Ottimale a 25 Giocatori"]
     end
 
     FC_Hist --> P1
@@ -182,127 +187,128 @@ per un uso in lega reale.
 
 ---
 
-## Machine Learning & Optimization Modules (methodology, demo calibration)
+## Moduli di Machine Learning & Ottimizzazione (metodologia, calibrazione demo)
 
-### 1. Probabilistic Quantile Regression (`08_quantile_points_model.py`)
+### 1. Quantile Regression Probabilistica (`08_quantile_points_model.py`)
 
-Static projections fail because they hide risk. A volatile forward and a steady defender
-might both project at 200 points, but their risk profiles are entirely different. The
-methodology trains three distinct quantile regressors:
-- **P10 Floor ($\alpha=0.10$)**: Conservative worst-case scenario projection.
-- **P50 Median ($\alpha=0.50$)**: Most probable expected total points outcome.
-- **P90 Ceiling ($\alpha=0.90$)**: High-end breakout upside scenario.
-- **Volatility Spread ($\text{P90} - \text{P10}$)**: Quantifies boom-or-bust uncertainty.
+Le proiezioni statiche falliscono perché nascondono il rischio. Un attaccante volatile e un
+difensore stabile potrebbero entrambi proiettare 200 punti, ma i loro profili di rischio sono
+completamente diversi. La metodologia allena tre regressori quantile distinti:
+- **Floor P10 ($\alpha=0.10$)**: proiezione conservativa dello scenario peggiore.
+- **Mediana P50 ($\alpha=0.50$)**: esito totale punti più probabile.
+- **Ceiling P90 ($\alpha=0.90$)**: scenario di massimo potenziale (breakout).
+- **Spread di Volatilità ($\text{P90} - \text{P10}$)**: quantifica l'incertezza boom-or-bust.
 
 ```mermaid
 flowchart LR
-    X["Player Feature Vector<br/>(3y Rating, xG/90, xA/90, Availability, Team Strength)"] --> M1["Quantile Model α=0.10"]
-    X --> M2["Quantile Model α=0.50"]
-    X --> M3["Quantile Model α=0.90"]
+    X["Vettore Feature Giocatore<br/>(Voto 3y, xG/90, xA/90, Disponibilità, Forza Squadra)"] --> M1["Modello Quantile α=0.10"]
+    X --> M2["Modello Quantile α=0.50"]
+    X --> M3["Modello Quantile α=0.90"]
 
-    M1 --> O1["Floor Pts (P10)"]
-    M2 --> O2["Expected Pts (P50)"]
-    M3 --> O3["Ceiling Pts (P90)"]
+    M1 --> O1["Punti Floor (P10)"]
+    M2 --> O2["Punti Attesi (P50)"]
+    M3 --> O3["Punti Ceiling (P90)"]
 
-    O1 --> S["Volatility Spread = P90 - P10"]
+    O1 --> S["Spread di Volatilità = P90 - P10"]
     O3 --> S
 ```
 
-The full weighting scheme and injury malus formula used in this demo build are documented
-in [docs/scoring_methodology.md](docs/scoring_methodology.md) — this is the *demo*
-calibration, not the one used in the commercial product.
+Lo schema completo dei pesi e la formula del malus infortuni usati in questa build demo sono
+documentati in [docs/scoring_methodology.md](docs/scoring_methodology.md) — questa è la
+calibrazione *demo*, non quella usata nel prodotto commerciale.
 
-### 2. Sabermetric VORP & Fair Credit Pricing (`09_vorp_auction_pricing.py`)
+### 2. VORP Sabermetrico & Fair Credit Pricing (`09_vorp_auction_pricing.py`)
 
-A player's auction value is not their raw points, but the points they produce **above the
-best freely available player at their position on the waiver wire (Replacement Level)**.
+Il valore d'asta di un giocatore non sono i suoi punti grezzi, ma i punti che produce
+**al di sopra del miglior giocatore liberamente disponibile nel suo ruolo (Replacement
+Level)**.
 
-1. **Positional Replacement Baseline**: The projected points of the $(N_{\text{Drafted}} + 1)$-th
-   player at each position.
+1. **Baseline di Rimpiazzo per Ruolo**: i punti proiettati dell'$(N_{\text{Titolari}} + 1)$-esimo
+   giocatore per ogni ruolo.
 2. **Value Over Replacement Player (VORP)**:
-   $$\text{VORP}_i = \max\left(0, \text{ExpectedPoints}_i - \text{Baseline}_{\text{Role}(i)}\right)$$
-3. **Fair Auction Value Allocation**:
-   $$\text{FairPrice}_i = 1 + \left(\text{Total League Budget} - \text{Reserve}\right) \times \frac{\text{VORP}_i}{\sum_{j} \text{VORP}_j}$$
-4. **Market Surplus Value**:
-   $$\text{Surplus Value} = \text{Fair Price} - \text{Official Market Price}$$
+   $$\text{VORP}_i = \max\left(0, \text{PuntiAttesi}_i - \text{Baseline}_{\text{Ruolo}(i)}\right)$$
+3. **Allocazione del Valore Equo d'Asta**:
+   $$\text{PrezzoEquo}_i = 1 + \left(\text{Budget Totale Lega} - \text{Riserva}\right) \times \frac{\text{VORP}_i}{\sum_{j} \text{VORP}_j}$$
+4. **Valore di Mercato Residuo**:
+   $$\text{ValoreResiduo} = \text{PrezzoEquo} - \text{PrezzoUfficialeMercato}$$
 
-### 3. Mathematical 25-Player Roster Knapsack Optimizer (`10_roster_optimizer.py`)
+### 3. Ottimizzatore Matematico della Rosa a 25 Giocatori (`10_roster_optimizer.py`)
 
-Roster construction is formulated as a **Mixed-Integer Linear Programming (MILP)** problem
-solved via `scipy.optimize.milp`:
+La costruzione della rosa è formulata come problema di **Programmazione Lineare Intera Mista
+(MILP)**, risolto tramite `scipy.optimize.milp`:
 
-$$\max \sum_{i=1}^{N} \text{ExpectedPoints}_i \cdot x_i$$
+$$\max \sum_{i=1}^{N} \text{PuntiAttesi}_i \cdot x_i$$
 
-Subject to strict positional and budgetary constraints:
-$$\sum_{i=1}^{N} \text{Price}_i \cdot x_i \le \text{Budget} \quad (\text{e.g., 500 or 1,000 credits})$$
-$$\sum_{i \in \text{Goalkeepers}} x_i = 3, \quad \sum_{i \in \text{Defenders}} x_i = 8, \quad \sum_{i \in \text{Midfielders}} x_i = 8, \quad \sum_{i \in \text{Forwards}} x_i = 6$$
+Soggetto a vincoli rigidi di ruolo e budget:
+$$\sum_{i=1}^{N} \text{Prezzo}_i \cdot x_i \le \text{Budget} \quad (\text{es. 500 o 1.000 crediti})$$
+$$\sum_{i \in \text{Portieri}} x_i = 3, \quad \sum_{i \in \text{Difensori}} x_i = 8, \quad \sum_{i \in \text{Centrocampisti}} x_i = 8, \quad \sum_{i \in \text{Attaccanti}} x_i = 6$$
 $$x_i \in \{0, 1\}$$
 
 ---
 
-## Pre-Auction Decision Matrix (Value vs Price)
+## Matrice Decisionale Pre-Asta (Valore vs Prezzo)
 
-Cross-referencing the **Final Score** and **VORP** with the **Market Auction Price**
-segments every player into four operational draft quadrants:
+Incrociando il **Punteggio Finale** e il **VORP** con il **Prezzo di Mercato**, ogni
+giocatore viene segmentato in quattro quadranti operativi:
 
-| Score Bracket | Low Market Price / Budget Tier | High Market Price / Premium Tier |
+| Fascia di Punteggio | Prezzo di Mercato Basso / Budget | Prezzo di Mercato Alto / Premium |
 |---|---|---|
-| **High Final Score & VORP**<br/>*(Elite output & reliability)* | **QUADRANT 2 — UNDERVALUED GEMS (Primary Targets)**<br/>Players with elite underlying numbers, high availability, and strong xG undervalued by standard market pricing. This is where fantasy leagues are won. | **QUADRANT 1 — LEGITIMATE PREMIUM PILLARS**<br/>Certified top-tier players with dominant metrics and physical durability. Significant capital allocation is mathematically justified. |
-| **Low Final Score & VORP**<br/>*(Mediocre metrics or high fragility)* | **QUADRANT 3 — BENCH FILLERS (Minimum Bid)**<br/>Consistent lower-tier starters or backup players to secure at base minimum price (1 credit) to complete roster requirements without burning capital. | **QUADRANT 4 — AUCTION TRAPS (Overhyped Assets)**<br/>Big-name players returning from catastrophic injuries or in tactical decline. Primary objective: drive up the price and let competitors drain their budget. |
+| **Alto Punteggio Finale & VORP**<br/>*(rendimento elite & affidabilità)* | **QUADRANTE 2 — GIOIELLI SOTTOVALUTATI (Obiettivi Primari)**<br/>Giocatori con numeri sottostanti elite, alta disponibilità e xG solido, sottovalutati dal prezzo di mercato standard. È qui che si vincono le leghe. | **QUADRANTE 1 — PILASTRI PREMIUM LEGITTIMI**<br/>Giocatori top-tier certificati con metriche dominanti e affidabilità fisica. Un'allocazione di budget significativa è matematicamente giustificata. |
+| **Basso Punteggio Finale & VORP**<br/>*(metriche mediocri o alta fragilità)* | **QUADRANTE 3 — RISERVE (Offerta Minima)**<br/>Titolari di livello inferiore o riserve da assicurarsi al prezzo base minimo (1 credito) per completare la rosa senza bruciare capitale. | **QUADRANTE 4 — TRAPPOLE D'ASTA (Asset Sopravvalutati)**<br/>Giocatori di grande nome reduci da infortuni catastrofici o in declino tattico. Obiettivo primario: far salire il prezzo e lasciare che i concorrenti brucino il budget. |
 
 ```mermaid
 flowchart LR
-    subgraph Q2_Box ["QUADRANT 2: Undervalued Gems"]
-        Q2_T["High VORP + Low Price"]
-        Q2_A["Action: High-priority aggressive target"]
+    subgraph Q2_Box ["QUADRANTE 2: Gioielli Sottovalutati"]
+        Q2_T["Alto VORP + Prezzo Basso"]
+        Q2_A["Azione: Obiettivo aggressivo prioritario"]
     end
 
-    subgraph Q1_Box ["QUADRANT 1: Premium Pillars"]
-        Q1_T["High VORP + High Price"]
-        Q1_A["Action: Core budget allocation"]
+    subgraph Q1_Box ["QUADRANTE 1: Pilastri Premium"]
+        Q1_T["Alto VORP + Prezzo Alto"]
+        Q1_A["Azione: Allocazione budget core"]
     end
 
-    subgraph Q3_Box ["QUADRANT 3: Bench Fillers"]
-        Q3_T["Low VORP + Low Price"]
-        Q3_A["Action: Minimum 1-credit bid"]
+    subgraph Q3_Box ["QUADRANTE 3: Riserve"]
+        Q3_T["Basso VORP + Prezzo Basso"]
+        Q3_A["Azione: Offerta minima 1 credito"]
     end
 
-    subgraph Q4_Box ["QUADRANT 4: Auction Traps"]
-        Q4_T["Low VORP + High Price"]
-        Q4_A["Action: Force opponents to overbid"]
+    subgraph Q4_Box ["QUADRANTE 4: Trappole d'Asta"]
+        Q4_T["Basso VORP + Prezzo Alto"]
+        Q4_A["Azione: Far rilanciare gli avversari"]
     end
 ```
 
 ---
 
-## Repository Structure
+## Struttura del Repository
 
 ```
 fantaofficina/
-├── core/config.py                      # Global configuration, scoring weights, team mappings
-├── run_pipeline.py                     # Unified CLI entry point with step argument parser
-├── demo.py                             # Zero-config interactive terminal demo
-├── requirements.txt                    # Python dependencies (pandas, scikit-learn, scipy, flask)
-├── LICENSE                             # PolyForm Noncommercial 1.0.0 License
+├── core/config.py                      # Configurazione globale, pesi scoring, mapping squadre
+├── run_pipeline.py                     # Entry point CLI unificato con parser di step
+├── demo.py                             # Demo interattiva da terminale, zero-config
+├── requirements.txt                    # Dipendenze Python (pandas, scikit-learn, scipy, flask)
+├── LICENSE                             # Licenza PolyForm Noncommercial 1.0.0
 ├── core/ingestion/static/
-│   ├── 01_scrape_historical.py         # Stage 1: Multi-season historical data scraper (real)
-│   ├── 03_update_listone.py            # Stage 2: Official player price sheet ingestion
-│   ├── 04_scrape_understat.py          # Stage 2b: Underlying xG/xA scraping (real)
-│   ├── 04b_scrape_lineups.py           # Stage 2c: Lineup/formation scraping (real)
-│   ├── 05_scrape_injuries.py           # Stage 3: Transfermarkt injury scraper (real)
-│   ├── 06_build_dataset.py             # Stage 4: Fuzzy entity resolution & Composite Score
-│   ├── 08_quantile_points_model.py     # Stage 5: Demo points projection (P10/P50/P90)
-│   ├── 09_vorp_auction_pricing.py      # Stage 6: Demo VORP & Fair Credit Pricing
-│   ├── 10_roster_optimizer.py          # Stage 7: MILP 25-Player Roster Optimizer
-│   └── 07_generate_excel.py            # Stage 8: Formatted multi-tab spreadsheet generator
-├── web/app.py                          # Local web interface (base auction workflow)
+│   ├── 01_scrape_historical.py         # Stage 1: scraping storico multi-stagione (reale)
+│   ├── 03_update_listone.py            # Stage 2: ingestion listone ufficiale
+│   ├── 04_scrape_understat.py          # Stage 2b: scraping xG/xA sottostanti (reale)
+│   ├── 04b_scrape_lineups.py           # Stage 2c: scraping formazioni (reale)
+│   ├── 05_scrape_injuries.py           # Stage 3: scraper infortuni Transfermarkt (reale)
+│   ├── 06_build_dataset.py             # Stage 4: entity resolution fuzzy & Composite Score
+│   ├── 08_quantile_points_model.py     # Stage 5: proiezione punti demo (P10/P50/P90)
+│   ├── 09_vorp_auction_pricing.py      # Stage 6: VORP demo & Fair Credit Pricing
+│   ├── 10_roster_optimizer.py          # Stage 7: ottimizzatore rosa MILP
+│   └── 07_generate_excel.py            # Stage 8: generatore foglio Excel multi-scheda
+├── web/app.py                          # Interfaccia web locale (workflow base d'asta)
 ├── docs/
-│   ├── pipeline_architecture.md        # In-depth architectural dataflow documentation
-│   ├── scoring_methodology.md          # Demo mathematical formulas and feature weights
-│   └── data_sources.md                 # Ingestion API specs and fallback mechanisms
+│   ├── pipeline_architecture.md        # Documentazione approfondita del flusso dati
+│   ├── scoring_methodology.md          # Formule matematiche demo e pesi delle feature
+│   └── data_sources.md                 # Specifiche API di ingestion e fallback
 ├── examples/
-│   └── dataset_sample.csv              # Ready-to-use sample dataset (no scraping required)
-└── data/                                # Working data directory (generated artifacts)
+│   └── dataset_sample.csv              # Dataset di esempio pronto all'uso (no scraping)
+└── data/                                # Directory di lavoro (artefatti generati)
 ```
 
 Timeline:
@@ -311,9 +317,9 @@ Timeline:
 
 ---
 
-## Quick Start Guide
+## Guida Rapida (Quick Start)
 
-### 1. Environment Setup
+### 1. Setup dell'ambiente
 ```bash
 git clone https://github.com/spectrelabo/fantaofficina.git
 cd fantaofficina
@@ -324,23 +330,23 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 2. Executing the Pipeline
+### 2. Esecuzione della pipeline
 
 ```bash
-# Execute the full end-to-end pipeline (Scraping -> Scoring -> Demo ML -> VORP -> Optimizer -> Excel)
+# Esegui la pipeline completa end-to-end (Scraping -> Scoring -> ML Demo -> VORP -> Optimizer -> Excel)
 python run_pipeline.py
 
-# Execute specific standalone stages
-python run_pipeline.py --step 8    # Demo Quantile Projections (P10/P50/P90 Points)
-python run_pipeline.py --step 9    # Compute Demo VORP & Fair Credit Pricing
-python run_pipeline.py --step 10   # Run MILP 25-Player Roster Knapsack Optimizer
-python run_pipeline.py --step 7    # Export styled multi-tab Excel spreadsheet
+# Esegui singoli step
+python run_pipeline.py --step 8    # Proiezioni quantile demo (P10/P50/P90)
+python run_pipeline.py --step 9    # Calcolo VORP demo & Fair Credit Pricing
+python run_pipeline.py --step 10   # Solver MILP rosa a 25 giocatori
+python run_pipeline.py --step 7    # Esporta il foglio Excel multi-scheda
 
-# Execute from a specific stage onward
+# Esegui da uno step specifico in poi
 python run_pipeline.py --from 8
 ```
 
-### 3. Run the local web interface
+### 3. Avvia l'interfaccia web locale
 
 ```bash
 python web/app.py
@@ -348,48 +354,49 @@ python web/app.py
 
 ---
 
-## Generated Artifacts
+## Artefatti Generati
 
-1. **`data/analisi_fantacalcio_completa.xlsx`**: Styled multi-tab Excel workbook with
-   positional sheets (Goalkeepers, Defenders, Midfielders, Forwards), demo expected points,
-   VORP pricing, and auction strategy column legend.
-2. **`data/dataset_finale.csv`**: Master dataset for downstream programmatic analysis.
-3. **`data/storico_infortuni.csv`**: 3-season clinical and physical fragility audit report
-   for all tracked players.
-4. **`examples/dataset_sample.csv`**: Representative sample dataset with complete demo
-   metrics for instant validation without scraping.
-
----
-
-## Credits & Ingestion Sources
-
-This project stands on the shoulders of the open-source football analytics community:
-
-- **[fantabeto](https://github.com/uPeppe/fantabeto)** by [@uPeppe](https://github.com/uPeppe): Groundbreaking work applying Bayesian neural network modeling to fantasy sports performance estimation.
-- **[Fantacalcio.it](http://fantacalcio.it/)**: Official ratings, historical match data, player registries, and quotations.
-- **[FBref.com](http://fbref.com/)**: Standard-setting repository for European football statistics.
-- **[ff_prob](https://github.com/amiles2233/ff_prob)**: Foundational inspiration for applying probabilistic modeling to fantasy sports projections.
-- **[Scrape-FBref-data](https://github.com/parth1902/Scrape-FBref-data)**: Utility for structured data extraction.
-- **[Understat.com](https://understat.com/)**: Shot-level analytics, Expected Goals ($xG$), and Expected Assists ($xA$).
-- **[Transfermarkt.com](https://www.transfermarkt.com/)**: Comprehensive injury logs, missed match records, and medical histories.
+1. **`data/analisi_fantacalcio_completa.xlsx`**: workbook Excel multi-scheda con fogli per
+   ruolo (Portieri, Difensori, Centrocampisti, Attaccanti), punti attesi demo, pricing VORP
+   e legenda della strategia d'asta.
+2. **`data/dataset_finale.csv`**: dataset master per analisi programmatiche a valle.
+3. **`data/storico_infortuni.csv`**: report di audit clinico e fragilità fisica triennale
+   per tutti i giocatori tracciati.
+4. **`examples/dataset_sample.csv`**: dataset di esempio rappresentativo con metriche demo
+   complete per validazione istantanea senza scraping.
 
 ---
 
-## Support the Project
+## Crediti & Fonti di Ingestion
 
-If `Spectre - FantaMoneyball` prevented an emotional 2:00 AM panic buy, saved your budget, or
-gave you an algorithmic edge in your fantasy auction, consider buying a coffee to support
-ongoing open-source maintenance:
+Questo progetto poggia sulle spalle della comunità open-source di analytics calcistiche:
+
+- **[fantabeto](https://github.com/uPeppe/fantabeto)** di [@uPeppe](https://github.com/uPeppe): lavoro pionieristico nell'applicazione di modelli neurali bayesiani alla stima delle performance nel fantacalcio.
+- **[Fantacalcio.it](http://fantacalcio.it/)**: voti ufficiali, dati storici delle partite, anagrafica giocatori e quotazioni.
+- **[FBref.com](http://fbref.com/)**: repository di riferimento per le statistiche del calcio europeo.
+- **[ff_prob](https://github.com/amiles2233/ff_prob)**: ispirazione fondativa per l'applicazione di modelli probabilistici alle proiezioni fantasy.
+- **[Scrape-FBref-data](https://github.com/parth1902/Scrape-FBref-data)**: utility per l'estrazione strutturata dei dati.
+- **[Understat.com](https://understat.com/)**: analytics a livello di tiro, Expected Goals ($xG$) ed Expected Assists ($xA$).
+- **[Transfermarkt.com](https://www.transfermarkt.com/)**: storico infortuni completo, partite saltate e anamnesi mediche.
+
+---
+
+## Sostieni il Progetto
+
+Se `Spectre - FantaMoneyball` ti ha evitato un rilancio emotivo alle 2 di notte, ti ha
+salvato il budget, o ti ha dato un vantaggio algoritmico nella tua asta fantacalcistica,
+considera di offrire un caffè per sostenere la manutenzione open-source in corso:
 
 [![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png)](https://buymeacoffee.com/blueskies360)
 
 ---
 
-## Contributing & License
+## Contribuire & Licenza
 
-Contributions, feature proposals, and model extensions are welcome via Pull Requests and Issues.
-Distributed under the **PolyForm Noncommercial License 1.0.0**. Noncommercial use, research,
-and personal projects are freely permitted; commercial use requires a separate license from
-the copyright holder. See [LICENSE](LICENSE) for full legal text.
+Contributi, proposte di feature ed estensioni del modello sono benvenuti tramite Pull
+Request e Issue. Distribuito sotto **licenza PolyForm Noncommercial 1.0.0**. L'uso non
+commerciale, di ricerca e personale è liberamente consentito; l'uso commerciale richiede una
+licenza separata dal detentore del copyright. Vedi [LICENSE](LICENSE) per il testo legale
+completo.
 
-Maintained by [SpectreLabo](https://github.com/spectrelabo).
+Mantenuto da [SpectreLabo](https://github.com/spectrelabo).
