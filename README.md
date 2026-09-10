@@ -13,13 +13,13 @@ This is a demonstrative public build focused on showing the end-to-end workflow 
 ## Features available in this branch
 
 - Base auction pricing workflow for fantasy football analysis
-- Demo data pipeline included in the repository
+- Real historical & injury data scraping (fantacalcio.it, football-data.co.uk, Transfermarkt); pricing/valuation formulas remain simplified for demo purposes
 - Excel workbook generation for the produced outputs
 - Local web interface for exploring the demo build
 
 ## Repository structure
 
-- `core/ingestion/static/` — demo ingestion, pricing, and export pipeline scripts
+- `core/ingestion/static/` — ingestion (real scraping for historical stats and injuries), pricing, and export pipeline scripts
 - `core/config.py` and related config files — runtime configuration
 - `run_pipeline.py` — executes the pipeline flow
 - `web/app.py` — starts the local web interface
